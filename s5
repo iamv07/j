@@ -1,0 +1,104 @@
+// Slip 5 - 1 - ReverseFile.java(create test.txt file) 
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class ReverseFile {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter file name: ");
+        String fileName = sc.nextLine();
+        String content = "";
+
+        try {
+            FileReader fr = new FileReader(fileName);
+            int ch;
+            while ((ch = fr.read()) != -1) {
+                content = content + (char) ch;
+            }
+            fr.close();
+
+            System.out.println("\nFile contents in reverse order:");
+            System.out.println("--------------------------------");
+            for (int i = content.length() - 1; i >= 0; i--) {
+                System.out.print(content.charAt(i));
+            }
+        } catch (IOException e) {
+            System.out.println("Error: File not found or cannot be read.");
+        }
+        sc.close();
+    }
+}
+
+
+// Slip 5 - 2 OR - ShapeDemo.java
+import java.util.Scanner;
+
+abstract class Shape {
+    abstract void area();
+    abstract void volume();
+}
+
+class Sphere extends Shape {
+    double radius;
+
+    Sphere(double radius) {
+        this.radius = radius;
+    }
+
+    void area() {
+        double a = 4 * Math.PI * radius * radius;
+        System.out.println("Area of Sphere = " + a);
+    }
+
+    void volume() {
+        double v = (4.0 / 3.0) * Math.PI * radius * radius * radius;
+        System.out.println("Volume of Sphere = " + v);
+    }
+}
+
+class Cylinder extends Shape {
+    double radius;
+    double height;
+
+    Cylinder(double radius, double height) {
+        this.radius = radius;
+        this.height = height;
+    }
+
+    void area() {
+        double a = 2 * Math.PI * radius * (radius + height);
+        System.out.println("Area of Cylinder = " + a);
+    }
+
+    void volume() {
+        double v = Math.PI * radius * radius * height;
+        System.out.println("Volume of Cylinder = " + v);
+    }
+}
+
+public class ShapeDemo {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter radius of Sphere: ");
+        double sphereRadius = sc.nextDouble();
+        System.out.print("Enter radius of Cylinder: ");
+        double cylinderRadius = sc.nextDouble();
+        System.out.print("Enter height of Cylinder: ");
+        double cylinderHeight = sc.nextDouble();
+
+        Sphere sphere = new Sphere(sphereRadius);
+        Cylinder cylinder = new Cylinder(cylinderRadius, cylinderHeight);
+
+        System.out.println("\nSphere Details");
+        System.out.println("----------------------");
+        sphere.area();
+        sphere.volume();
+
+        System.out.println("\nCylinder Details");
+        System.out.println("----------------------");
+        cylinder.area();
+        cylinder.volume();
+        sc.close();
+    }
+}
