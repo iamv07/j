@@ -1,0 +1,68 @@
+Addition.java(javac Addition.java
+java Addition 10 20) 
+PersonDetails.java
+
+class Addition {
+    public static void main(String args[]) {
+        int num1 = Integer.parseInt(args[0]);
+        int num2 = Integer.parseInt(args[1]);
+        int sum = num1 + num2;
+        System.out.println("Addition of two numbers = " + sum);
+    }
+}
+
+
+
+import java.util.Scanner;
+class Person {
+    int pid;
+    String pname;
+    int age;
+    String gender;
+    Person() {
+        this.pid = 0;
+        this.pname = "Unknown";
+        this.age = 0;
+        this.gender = "Unknown";
+    }
+    Person(int pid, String pname, int age, String gender) {
+        this.pid = pid;
+        this.pname = pname;
+        this.age = age;
+        this.gender = gender;
+    }
+    void display() {
+        System.out.println("Person ID : " + pid);
+        System.out.println("Name      : " + pname);
+        System.out.println("Age     : " + age);
+        System.out.println("Gender : " + gender);
+        System.out.println("-----------------------------");
+    }
+}
+public class PersonDetails {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        Person persons[] = new Person[5];
+        System.out.println("Enter details of 5 persons:");
+        for (int i = 0; i < 5; i++) {
+            System.out.println("\nEnter details for Person " + (i + 1));
+            System.out.print("Enter Person ID: ");
+            int pid = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter Person Name: ");
+            String pname = sc.nextLine();
+            System.out.print("Enter Age: ");
+            int age = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter Gender: ");
+            String gender = sc.nextLine();
+            persons[i] = new Person(pid, pname, age, gender);
+        }
+        System.out.println("\nDetails of 5 Persons:");
+        System.out.println("=============================");
+        for (int i = 0; i < 5; i++) {
+            persons[i].display();
+        }
+        sc.close();
+    }
+}
